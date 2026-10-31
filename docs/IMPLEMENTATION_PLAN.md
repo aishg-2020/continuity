@@ -10,15 +10,15 @@
 
 This rule applies to **every phase** below. No phase may break it.
 
-| Allowed | Not allowed |
-|---|---|
-| Typed TypeScript/JSON fixtures in the repo | Any real database (Postgres, Supabase, Firebase, etc.) |
-| Deterministic, seeded fake-data generators | Any real authentication provider |
-| `localStorage` (records) and IndexedDB (local file blobs) | Real HTTP APIs, serverless functions that persist data |
-| Mock repositories and mock services with simulated latency/errors | Email, SMS, WhatsApp or push providers |
+| Allowed                                                                  | Not allowed                                                                         |
+| ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| Typed TypeScript/JSON fixtures in the repo                               | Any real database (Postgres, Supabase, Firebase, etc.)                              |
+| Deterministic, seeded fake-data generators                               | Any real authentication provider                                                    |
+| `localStorage` (records) and IndexedDB (local file blobs)                | Real HTTP APIs, serverless functions that persist data                              |
+| Mock repositories and mock services with simulated latency/errors        | Email, SMS, WhatsApp or push providers                                              |
 | Mock Service Worker (MSW) to intercept requests in the browser (Phase 8) | Payment gateways, accounting, weather, maps, calendar or cloud storage integrations |
-| Browser print / client-side PDF generation | AI services |
-| Placeholder images stored in `/public` | Real personal data of real people |
+| Browser print / client-side PDF generation                               | AI services                                                                         |
+| Placeholder images stored in `/public`                                   | Real personal data of real people                                                   |
 
 Rules every phase must follow:
 
@@ -36,28 +36,28 @@ Rules every phase must follow:
 
 As recommended in PRD §13 (prototype architecture). Use the latest stable version of each at setup time and pin it in `package.json`.
 
-| Concern | Choice | Notes |
-|---|---|---|
-| Framework | **Next.js (App Router)** + **TypeScript** (strict) | Data is client-side, so data-driven pages are client components. Static/marketing pages can stay server components. |
-| Styling | **Tailwind CSS** + **shadcn/ui** (Radix primitives) | Dark cinematic theme through CSS variables (PRD §11). |
-| State / mock persistence | **Zustand** with `persist` middleware → `localStorage` | Versioned store with `migrate` so fixture changes don't break saved demo state. |
-| Forms & validation | **React Hook Form** + **Zod** | Zod schemas are the single source for types, form validation and fixture validation. |
-| Dates & time zones | **date-fns** + **date-fns-tz** | Timestamps stored as UTC ISO strings and rendered in the project time zone. |
-| Money | Integer **paise** (minor units) + `Intl.NumberFormat('en-IN')` | Never floats (PRD §12). Lakh/crore formatting helper. |
-| Charts | **Recharts** | Budget and progress visualisations. |
-| Drag & drop | **dnd-kit** | Reordering scenes, shots, storyboard frames and day-plan scenes. |
-| Fake data | **@faker-js/faker** (seeded, `en_IN` locale) | Deterministic. The same seed always produces the same data. |
-| Local files | **idb-keyval** (IndexedDB) | Mock uploads only, capped size/type (see Phase 7). |
-| Mock API (Phase 8) | **MSW** | Browser-only request interception. |
-| Unit / component tests | **Vitest** + **React Testing Library** | |
-| E2E tests | **Playwright** | Runs the PRD's core user journeys. |
-| A11y checks | **@axe-core/playwright**, `eslint-plugin-jsx-a11y` | |
-| Quality | ESLint, Prettier, Husky + lint-staged, Commitlint (conventional commits) | |
-| CI | **GitHub Actions** | Lint, typecheck, unit tests, build, E2E on every PR. |
-| Scroll storytelling (landing page only) | **GSAP** + **ScrollTrigger** | Pinned, scrubbed scroll timelines. Loaded only on the marketing route. |
-| Component motion | **Framer Motion** | Micro-interactions, enter/exit, route transitions. Also used lightly in the app. |
-| Smooth scrolling (landing page only) | **Lenis** | Synced to the GSAP ticker. Turned off when the user prefers reduced motion. |
-| Hosting (static demo) | Vercel preview/production deployments | Only the static/client app is hosted. No backend resources. |
+| Concern                                 | Choice                                                                   | Notes                                                                                                               |
+| --------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| Framework                               | **Next.js (App Router)** + **TypeScript** (strict)                       | Data is client-side, so data-driven pages are client components. Static/marketing pages can stay server components. |
+| Styling                                 | **Tailwind CSS** + **shadcn/ui** (Radix primitives)                      | Dark cinematic theme through CSS variables (PRD §11).                                                               |
+| State / mock persistence                | **Zustand** with `persist` middleware → `localStorage`                   | Versioned store with `migrate` so fixture changes don't break saved demo state.                                     |
+| Forms & validation                      | **React Hook Form** + **Zod**                                            | Zod schemas are the single source for types, form validation and fixture validation.                                |
+| Dates & time zones                      | **date-fns** + **date-fns-tz**                                           | Timestamps stored as UTC ISO strings and rendered in the project time zone.                                         |
+| Money                                   | Integer **paise** (minor units) + `Intl.NumberFormat('en-IN')`           | Never floats (PRD §12). Lakh/crore formatting helper.                                                               |
+| Charts                                  | **Recharts**                                                             | Budget and progress visualisations.                                                                                 |
+| Drag & drop                             | **dnd-kit**                                                              | Reordering scenes, shots, storyboard frames and day-plan scenes.                                                    |
+| Fake data                               | **@faker-js/faker** (seeded, `en_IN` locale)                             | Deterministic. The same seed always produces the same data.                                                         |
+| Local files                             | **idb-keyval** (IndexedDB)                                               | Mock uploads only, capped size/type (see Phase 7).                                                                  |
+| Mock API (Phase 8)                      | **MSW**                                                                  | Browser-only request interception.                                                                                  |
+| Unit / component tests                  | **Vitest** + **React Testing Library**                                   |                                                                                                                     |
+| E2E tests                               | **Playwright**                                                           | Runs the PRD's core user journeys.                                                                                  |
+| A11y checks                             | **@axe-core/playwright**, `eslint-plugin-jsx-a11y`                       |                                                                                                                     |
+| Quality                                 | ESLint, Prettier, Husky + lint-staged, Commitlint (conventional commits) |                                                                                                                     |
+| CI                                      | **GitHub Actions**                                                       | Lint, typecheck, unit tests, build, E2E on every PR.                                                                |
+| Scroll storytelling (landing page only) | **GSAP** + **ScrollTrigger**                                             | Pinned, scrubbed scroll timelines. Loaded only on the marketing route.                                              |
+| Component motion                        | **Framer Motion**                                                        | Micro-interactions, enter/exit, route transitions. Also used lightly in the app.                                    |
+| Smooth scrolling (landing page only)    | **Lenis**                                                                | Synced to the GSAP ticker. Turned off when the user prefers reduced motion.                                         |
+| Hosting (static demo)                   | Vercel preview/production deployments                                    | Only the static/client app is hosted. No backend resources.                                                         |
 
 ---
 
@@ -160,7 +160,7 @@ Each phase lists **Goal → Scope → Mock data → Deliverables → Exit criter
    - Issue/PR templates and a `CONTRIBUTING.md` that covers the mock-only rule.
 2. **Project scaffold**
    - `create-next-app` with TypeScript strict, App Router, `src/` directory, Tailwind and ESLint.
-   - Package manager: **pnpm**.
+   - Package manager: **npm** (pnpm needed admin rights to install on the dev machine).
    - Path aliases (`@/…`).
    - shadcn/ui initialised. Base components added: Button, Input, Select, Dialog, Sheet, DropdownMenu, Tabs, Table, Badge, Card, Tooltip, Toast/Sonner, Form, Calendar, Popover, Command, Skeleton.
 3. **Tooling**
@@ -185,7 +185,7 @@ Each phase lists **Goal → Scope → Mock data → Deliverables → Exit criter
    - Zustand root store with `persist` (`localStorage` key `continuity-demo-v1`), schema `version` and a `migrate` stub.
    - Generic `createMockRepository<T>()` helper: CRUD, filtering, sorting, simulated latency and simulated failure.
    - `clock` service (fixed demo date), `id` helper, money and date formatters (with tests).
-   - Seed pipeline skeleton: `seed.ts`, faker seeded with a constant, and a **fixture integrity test** that checks every foreign key resolves and every record passes its Zod schema.
+   - Seed pipeline skeleton: deterministic `seed.ts` (seeded faker generators are added in Phase 3, when sample volume is needed), and a **fixture integrity test** that checks every foreign key resolves and every record passes its Zod schema.
    - "Reset demo data" utility.
    - Dev-only toolbar: latency slider, failure toggle, reset, change demo date.
 7. **Documentation:** `docs/ARCHITECTURE.md` (layering, the repository pattern, the mock-only rule) and this plan.
@@ -194,7 +194,7 @@ Each phase lists **Goal → Scope → Mock data → Deliverables → Exit criter
 
 **Exit criteria**
 
-- `pnpm dev` runs. Every planned route renders inside the shell on desktop and mobile widths.
+- `npm run dev` runs. Every planned route renders inside the shell on desktop and mobile widths.
 - CI is green: lint, typecheck, unit tests (formatters, mock repository, fixture integrity) and Playwright smoke test.
 - Reloading the browser keeps state. "Reset demo data" restores the seed.
 - There are no network calls to any external service (checked by a Playwright test that fails on any non-local request).
@@ -240,7 +240,7 @@ Each phase lists **Goal → Scope → Mock data → Deliverables → Exit criter
    - Semantic landmarks and headings, a skip link, decorative motion elements hidden from screen readers (`aria-hidden`), all content reachable and readable with keyboard and with JS disabled.
    - Performance budget: GSAP/Lenis code-split to the marketing route only (they never load in the app). Animate only `transform` and `opacity`. Lazy-load below-the-fold media. Pause off-screen loops with `IntersectionObserver`.
 
-**Mock data:** A small, curated slice of the demo fixtures (one scene card, one shoot day, one call sheet, one budget summary from *City of Shadows*) used by the mockups, plus the local early-access entries.
+**Mock data:** A small, curated slice of the demo fixtures (one scene card, one shoot day, one call sheet, one budget summary from _City of Shadows_) used by the mockups, plus the local early-access entries.
 
 **Exit criteria**
 
@@ -448,15 +448,15 @@ Each phase lists **Goal → Scope → Mock data → Deliverables → Exit criter
 
 ## 4. Testing strategy (all phases)
 
-| Layer | Tool | What it covers |
-|---|---|---|
-| Domain logic | Vitest | Budget math, conflict engine, overview metrics, call-sheet snapshots, formatters. Highest coverage target (≥ 90%). |
-| Fixtures | Vitest | Every record passes its Zod schema. All foreign keys resolve. Counts match PRD §10 volumes. The seed is deterministic. |
-| Repositories | Vitest | CRUD, filters, permission rejections, persistence and migration. |
-| Components | Vitest + RTL | Forms (validation, error announcement), filters, status badges, empty states. |
-| Journeys | Playwright | PRD Journeys A–F on desktop and mobile viewports. "No external network" guard. |
-| Accessibility | axe + Playwright | Every route. |
-| Landing page | Lighthouse CI + Playwright | Performance budget, reduced-motion emulation, JS-disabled rendering, visual snapshots of key scroll positions. |
+| Layer         | Tool                       | What it covers                                                                                                         |
+| ------------- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Domain logic  | Vitest                     | Budget math, conflict engine, overview metrics, call-sheet snapshots, formatters. Highest coverage target (≥ 90%).     |
+| Fixtures      | Vitest                     | Every record passes its Zod schema. All foreign keys resolve. Counts match PRD §10 volumes. The seed is deterministic. |
+| Repositories  | Vitest                     | CRUD, filters, permission rejections, persistence and migration.                                                       |
+| Components    | Vitest + RTL               | Forms (validation, error announcement), filters, status badges, empty states.                                          |
+| Journeys      | Playwright                 | PRD Journeys A–F on desktop and mobile viewports. "No external network" guard.                                         |
+| Accessibility | axe + Playwright           | Every route.                                                                                                           |
+| Landing page  | Lighthouse CI + Playwright | Performance budget, reduced-motion emulation, JS-disabled rendering, visual snapshots of key scroll positions.         |
 
 ## 5. Mock-to-real migration notes (future work, not part of this plan)
 
@@ -471,7 +471,7 @@ These are recorded so mock-phase decisions don't block the PRD's real MVP later.
 ## 6. Decisions to confirm
 
 1. **Demo date:** 2026-11-15 (Asia/Kolkata) as the fixed "today", so City of Shadows is mid-shoot and The Last Train is ~2 weeks from its first shoot day.
-2. **Package manager:** pnpm (swap for npm if preferred).
+2. **Package manager:** ~~pnpm~~ npm (decided in Phase 0).
 3. **Licence** for the GitHub repository.
 4. **Accent colour and typefaces.** Proposed: warm amber/tungsten accent, editorial serif display, neutral sans for UI.
 5. **Landing imagery source:** AI-generated stills, royalty-free stock, or commissioned photography (this affects licensing and how the hero looks).

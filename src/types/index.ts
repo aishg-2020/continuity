@@ -1,0 +1,23 @@
+import type { EntityRecord } from "@/lib/data/entities";
+
+export type User = EntityRecord<"users">;
+export type Workspace = EntityRecord<"workspaces">;
+export type WorkspaceMember = EntityRecord<"workspaceMembers">;
+export type Role = WorkspaceMember["role"];
+export type Project = EntityRecord<"projects">;
+export type ProjectMember = EntityRecord<"projectMembers">;
+export type Scene = EntityRecord<"scenes">;
+export type SceneBreakdownItem = EntityRecord<"breakdownItems">;
+export type Person = EntityRecord<"people">;
+export type ProjectPerson = EntityRecord<"projectPeople">;
+export type Location = EntityRecord<"locations">;
+export type Shot = EntityRecord<"shots">;
+export type StoryboardFrame = EntityRecord<"storyboardFrames">;
+export type ShootDay = EntityRecord<"shootDays">;
+export type ShootDayScene = EntityRecord<"shootDayScenes">;
+export type ShootDayPerson = EntityRecord<"shootDayPeople">;
+export type BudgetLineItem = EntityRecord<"budgetLineItems">;
+export type Expense = EntityRecord<"expenses">;
+export type CallSheet = EntityRecord<"callSheets">;
+export type DailyReport = EntityRecord<"dailyReports">;
+export type ActivityEvent = EntityRecord<"activityEvents">;
